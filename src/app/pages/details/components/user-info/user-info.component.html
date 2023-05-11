@@ -1,0 +1,24 @@
+<ng-container *ngIf="user">
+    <app-photo [user]="user"></app-photo>
+    <div class="personal-info">
+        <h1>Personal information</h1>
+        <p>Name: {{user.name}}</p>
+        <p>Username: {{user.username}}</p>
+        <p>Email: {{user.email}}</p>
+        <p>Phone: {{user.phone}}</p>
+        <p>Website: {{user.website}}</p>
+    </div>
+    <div class="user-adress">
+        <h1>Adress</h1>
+        <p>Street: {{user.address.street}}</p>
+        <p>Suite: {{user.address.suite}}</p>
+        <p>City: {{user.address.city}}</p>
+        <p>Zipcode: {{user.address.zipcode}}</p>
+    </div>
+    <div class="user-company">
+        <h1>Company</h1>
+        <p>Company name: {{user.company.name}}</p>
+        <p>Catch phrase: {{user.company.catchPhrase}}</p>
+        <p>Bs: {{user.company.bs}}</p>
+    </div>
+</ng-container>

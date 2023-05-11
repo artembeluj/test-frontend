@@ -1,0 +1,41 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.personal-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: ivory;
+    border: 1px solid black;
+}
+
+.user-adress {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: ivory;
+    border: 1px solid black;
+}
+
+.user-company {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: ivory;
+    border: 1px solid black;
+}
+
+@media (max-width: 867px) {
+    :host {
+        flex-direction: column;
+    }
+}

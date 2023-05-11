@@ -1,0 +1,32 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-photo {
+    width: 350px;
+    height: 350px;
+    margin: 10px;
+    border-radius: 20%;
+}
+
+.file-upload-button {
+    display: inline-block;
+    padding: 8px 12px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    width: 100px;
+    margin: 10px;
+}
+
+.file-upload-button input[type="file"] {
+    display: none;
+}
+
+.file-upload-button span {
+    font-size: 14px;
+    font-weight: bold;
+}
