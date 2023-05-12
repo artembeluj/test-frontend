@@ -3,8 +3,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Subject, takeUntil } from 'rxjs';
 
-import { DataService } from 'src/app/core/services/data.service';
+import { CommentService } from 'src/app/core/services/comment.service';
 import { Post } from 'src/app/shared/intaerfaces/post';
+import { PostService } from 'src/app/core/services/post.service';
 
 @Component({
   selector: 'app-posts',
@@ -20,17 +21,18 @@ export class PostsComponent implements OnInit, OnDestroy {
 
   public constructor(
     private route: ActivatedRoute,
-    private dataService: DataService
+    private postService: PostService,
+    private commentService: CommentService
   ) { };
 
   public ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.dataService.getPostsByUserId(this.id)
+    this.postService.getPostsByUserId(this.id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
 
         for (const post of data) {
-          this.dataService.getCommentsForPosts(post.id)
+          this.commentService.getCommentsForPosts(post.id)
             .pipe(takeUntil(this.destroy$))
             .subscribe((comments) => {
               post.comments = comments;
@@ -43,7 +45,7 @@ export class PostsComponent implements OnInit, OnDestroy {
       });
   };
 
-  private getPostWithMostComments(posts: any[]): any {
+  private getPostWithMostComments(posts: any[]): Post {
     let postWithMostComments = posts[0];
 
     for (let post of posts) {

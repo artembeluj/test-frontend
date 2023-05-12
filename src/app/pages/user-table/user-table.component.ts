@@ -6,8 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { Subject, takeUntil } from 'rxjs';
 
-import { DataService } from 'src/app/core/services/data.service';
 import { User } from 'src/app/shared/intaerfaces/user';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-user-table',
@@ -20,7 +20,7 @@ export class UserTableComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject();
 
   public constructor(
-    private dataService: DataService,
+    private userService: UserService,
     private _liveAnnouncer: LiveAnnouncer
   ) { };
 
@@ -28,7 +28,7 @@ export class UserTableComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   public ngOnInit(): void {
-    this.dataService.getAllUsers()
+    this.userService.getAllUsers()
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
         this.dataSource = new MatTableDataSource(data);

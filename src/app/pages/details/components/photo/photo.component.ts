@@ -20,8 +20,8 @@ export class PhotoComponent implements OnDestroy {
     private photoSetvice: PhotoService
   ) { };
 
-  public onFileSelected(event: any): void {
-    const inputFile = event.target.files[0];
+  public onFileSelected(event: Event): void {
+    const inputFile = (event.target as HTMLInputElement)?.files?.[0];
 
     if (inputFile) {
       const formData = new FormData();

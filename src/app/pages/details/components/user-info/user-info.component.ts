@@ -3,8 +3,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Subject, takeUntil } from 'rxjs';
 
-import { DataService } from 'src/app/core/services/data.service';
 import { User } from 'src/app/shared/intaerfaces/user';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-user-info',
@@ -17,13 +17,13 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject();
 
   public constructor(
-    private dataService: DataService,
+    private userService: UserService,
     private route: ActivatedRoute
   ) { };
 
   public ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.dataService.getUserById(this.id)
+    this.userService.getUserById(this.id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => { this.user = data });
   };
